@@ -13,20 +13,21 @@
       <span v-for="(item, index) in people" :key="index">{{ item }}</span>
     </div>
     <!-- 盒子将来echarts展示图形图标的节点 -->
-    <div class="charts" ref="charts">123</div>
+    <div class="charts" ref="charts"></div>
   </div>
 </template>
 
 <script setup lang="ts">
+//水球图拓展插件
 import 'echarts-liquidfill'
 import * as echarts from 'echarts'
 import { ref, onMounted } from 'vue'
-let people = ref('215908人')
 
-//水球图拓展插件
+let people = ref('215908人')
 
 //获取节点
 let charts = ref()
+
 onMounted(() => {
   //获取echarts类的实例
   let mycharts = echarts.init(charts.value)
@@ -41,12 +42,12 @@ onMounted(() => {
     yAxis: {},
     //系列:决定你展示什么样的图形图标
     series: {
-      type: 'liquidFill', //系列
-      data: [0.6, 0.4, 0.2], //展示的数据
-      waveAnimation: true, //动画
+      type: 'liquidFill', // 水球图
+      data: [0.6, 0.4, 0.2], // 展示的数据
+      waveAnimation: true, // 动画
       animationDuration: 3,
       animationDurationUpdate: 0,
-      radius: '100%', //半径
+      radius: '100%', // 半径
       outline: {
         //外层边框颜色设置
         show: true,

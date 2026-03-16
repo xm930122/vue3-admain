@@ -10,8 +10,6 @@ import type {
 import type { UserState } from './types/types'
 import { SET_TOKEN, GET_TOKEN, REMOVE_TOKEN } from '@/utils/token'
 import { constantRoute, asyncRoute, anyRoute } from '@/router/routes'
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 import cloneDeep from 'lodash/cloneDeep'
 
@@ -57,11 +55,9 @@ const useUserStore = defineStore('User', {
     },
     async userInfo() {
       const res: userInfoResponseData = await reqUserInfo()
-
       if (res.code === 200) {
         this.username = res.data.name as string
         this.avatar = res.data.avatar as string
-
         const userAsyncRoute = filterAsyncRoute(
           cloneDeep(asyncRoute),
           res.data.routes,
@@ -76,6 +72,7 @@ const useUserStore = defineStore('User', {
         return Promise.reject(new Error(res.message))
       }
     },
+    // 退出登录
     async userLogout() {
       const res = await reqLogOut()
       if (res.code === 200) {

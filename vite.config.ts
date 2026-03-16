@@ -15,6 +15,7 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 // https://vitejs.dev/config/
 export default ({ command, mode }: ConfigEnv): UserConfigExport => {
   // 获取各种环境下对应的变量
+  // process.cwd() 项目根目录
   const env = loadEnv(mode, process.cwd())
   return {
     base: './',
@@ -40,11 +41,15 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
         logger: true,
       }),
     ],
-    resolve: { alias: { '@': path.resolve('./src') } },
+    resolve: {
+      // 别名配置
+      alias: { '@': path.resolve('./src') },
+    },
     css: {
       preprocessorOptions: {
         scss: {
           javascriptEnabled: true,
+          // 可以使用scss中变量
           additionalData: '@import "./src/styles/variable.scss";',
         },
       },
@@ -54,6 +59,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       proxy: {
         [env.VITE_APP_BASE_API]: {
           target: env.VITE_MOCK_SERVE,
+          // target: env.VITE_SERVE,
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
         },

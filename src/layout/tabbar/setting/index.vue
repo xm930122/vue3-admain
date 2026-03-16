@@ -77,6 +77,7 @@ const fullScreen = () => {
 }
 
 const logout = async () => {
+  // 退出登录接口请求成功之后，在执行路由重定向
   await userStore.userLogout()
   $router.push({ path: '/login', query: { redirect: $route.path } })
 }

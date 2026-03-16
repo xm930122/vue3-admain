@@ -43,18 +43,23 @@ import Line from './components/line/index.vue'
 import Rank from './components/rank/index.vue'
 import Year from './components/year/index.vue'
 import Counter from './components/counter/index.vue'
-//获取数据大屏展示内容盒子的DOM元素
+
+// 获取数据大屏展示内容盒子的DOM元素
 let screen = ref()
+
+// scale方式实现大屏自适应
 onMounted(() => {
   screen.value.style.transform = `scale(${getScale()}) translate(-50%,-50%)`
 })
-//定义大屏缩放比例
+
+// 定义大屏缩放比例
 function getScale(w = 1920, h = 1080) {
   const ww = window.innerWidth / w
   const wh = window.innerHeight / h
   return ww < wh ? ww : wh
 }
-//监听视口变化
+
+// 监听视口变化
 window.onresize = () => {
   screen.value.style.transform = `scale(${getScale()}) translate(-50%,-50%)`
 }
@@ -67,6 +72,7 @@ window.onresize = () => {
   background: url(./images/bg.png) no-repeat;
   background-size: cover;
 
+  // 数据大屏自适应：采用scale缩放方式自适应，固定定位，中心点移动到左上角
   .screen {
     position: fixed;
     width: 1920px;
