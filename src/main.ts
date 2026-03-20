@@ -10,9 +10,11 @@ import '@/styles/index.scss'
 import router from './router'
 import pinia from './store'
 import './permission'
+// 全局指令引入
 import { isHasButton } from './directive/has'
 
 const app = createApp(App)
+// 引入全局指令
 isHasButton(app)
 app.use(globalComponent)
 app.use(router)

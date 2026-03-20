@@ -1,6 +1,6 @@
 <template>
   <el-card class="box-card">
-    <!-- 添加品牌 -->
+    <!-- 添加品牌 v-has 自定义全局指令-->
     <el-button
       type="primary"
       size="default"

@@ -15,6 +15,7 @@ import cloneDeep from 'lodash/cloneDeep'
 
 let dynamicRoutes: RouteRecordRaw[] = []
 
+// 异步路由根据接口返回路由数据过滤处理
 function filterAsyncRoute(asyncRoute: any, routes: any) {
   return asyncRoute.filter((item: any) => {
     if (routes.includes(item.name)) {
@@ -58,10 +59,12 @@ const useUserStore = defineStore('User', {
       if (res.code === 200) {
         this.username = res.data.name as string
         this.avatar = res.data.avatar as string
+        // 有权限的异步路由
         const userAsyncRoute = filterAsyncRoute(
           cloneDeep(asyncRoute),
           res.data.routes,
         )
+        // 菜单路由
         this.menuRoutes = [...constantRoute, ...userAsyncRoute, anyRoute]
         dynamicRoutes = [...userAsyncRoute, anyRoute] // 记录动态添加的路由
         dynamicRoutes.forEach((route) => {

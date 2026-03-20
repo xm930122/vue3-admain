@@ -5,6 +5,7 @@
  *   icon: element-plus 图标
  */
 
+// 常量路由
 export const constantRoute = [
   {
     path: '/login',
@@ -58,6 +59,7 @@ export const constantRoute = [
   },
 ]
 
+// 异步路由（需要通过接口权限处理）
 export const asyncRoute = [
   {
     path: '/acl',
@@ -157,6 +159,7 @@ export const asyncRoute = [
   },
 ]
 
+// 任意路由
 export const anyRoute = {
   path: '/:pathMatch(.*)*',
   redirect: '/404',
