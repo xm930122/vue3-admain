@@ -1,6 +1,7 @@
 import pinia from '@/store'
 import useUserStore from '@/store/modules/user'
 const userStore = useUserStore(pinia)
+
 export const isHasButton = (app: any) => {
   //获取对应的用户仓库
   //全局自定义指令:实现按钮的权限

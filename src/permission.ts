@@ -15,9 +15,11 @@ const userStore = useUserStore(pinia)
 // 全局前置守卫
 router.beforeEach(async (to, from, next) => {
   document.title = to.meta.title + ` | ${setting.title}`
+  // 进度条
   nprogress.start()
   const token = userStore.token
   const username = userStore.username
+  // token存在
   if (token) {
     // 已登陆，再次前往/login路由，重定向到/
     if (to.path === '/login') {
@@ -35,6 +37,7 @@ router.beforeEach(async (to, from, next) => {
           asyncRoute.forEach((route) => {
             router.addRoute(route)
           })
+          // 跳转到对应的路由
           next({ ...to, replace: true })
         } catch (error) {
           // 登录超时，退出登录后重定向到首页

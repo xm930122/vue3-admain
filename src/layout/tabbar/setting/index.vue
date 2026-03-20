@@ -100,11 +100,13 @@ const predefineColors = ref([
   '#c7158577',
 ])
 
+// 设置暗黑模式（switch开关）Element Plus 支持暗黑模式 需要暗色模式，只需在 html 上添加一个名为 dark 的类
 const changeDark = () => {
   let html = document.documentElement
   dark.value ? (html.className = 'dark') : (html.className = '')
 }
 
+// 页面主题颜色设置
 const setColor = () => {
   let html = document.documentElement
   html.style.setProperty('--el-color-primary', color.value)
